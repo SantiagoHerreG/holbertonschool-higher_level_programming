@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 i = 122
 j = 1
-while i >= 65:
+while (i >= 65 and i != 96):
     print("{:s}".format(chr(i)), end='')
     j *= -1
     i += j * 32
