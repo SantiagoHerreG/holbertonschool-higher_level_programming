@@ -1,3 +1,4 @@
 #!/bin/bash
-echo "Compiling $(echo $PYFILE) ..." >&2
+echo "Compiling $(echo $PYFILE) ..."
 python -m py_compile $PYFILE
+chmod u+x "$(echo $PYFILE)c"
