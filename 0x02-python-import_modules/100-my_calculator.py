@@ -17,5 +17,7 @@ if __name__ == "__main__":
     elif sys.argv[2] == "*":
         result = term1 * term2
     else:
+        if term2 == 0:
+            exit(1)
         result = term1 / term2
     print("{} {} {} = {}".format(term1, sys.argv[2], term2, result))
