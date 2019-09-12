@@ -19,6 +19,6 @@ if __name__ == "__main__":
     else:
         if term2 == 0:
             print("Division is not possible")
-            exit(1)
+            exit(0)
         result = term1 / term2
     print("{} {} {} = {}".format(term1, sys.argv[2], term2, result))
