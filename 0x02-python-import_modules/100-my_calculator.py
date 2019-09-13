@@ -25,6 +25,6 @@ if __name__ == "__main__":
         if term2 == 0:
             print("{0:d} / {1:d} = Not possible".format(term1, term2))
             exit(1)
-        res = term1 / term2
+        res = int(term1 / term2)
 
     print("{0:d} {1:s} {2:d} = {3:d}".format(term1, sys.argv[2], term2, res))
