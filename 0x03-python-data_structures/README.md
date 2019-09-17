@@ -2,7 +2,7 @@
 
 ## Description
 
-###Project intended to learn:
+### Project intended to learn:
 What are lists and how to use them
 What are the differences and similarities between strings and lists
 What are the most common methods of lists and how to use them
