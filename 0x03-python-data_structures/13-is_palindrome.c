@@ -1,29 +1,35 @@
 #include "lists.h"
-#include <stdlib.h>
+
 /**
  * is_palindrome - checks if a linked list is a polindrome
  * @head: first node of the list
  * Return: 0 if not or 1 if it is palindrome
  */
 
-
 int is_palindrome(listint_t **head)
 {
 	listint_t *last;
-
-	if (!head)
-		return (0);
-
-	if (!*head)
-		return (1);
+	int stored_values[100000], cmp = 0, count = 0;
 
 	last = *head;
 
-	while (last->next->next)
-		last = last->next;
-	if (last->next->n != (*head)->n)
-		return (0);
-	last->next = NULL;
+	if (!last->next)
+		return (1);
 
-	return (is_palindrome(&((*head)->next)));
+	while (last->next)
+	{
+		stored_values[count] = last->n;
+		last = last->next;
+		count++;
+	}
+	stored_values[count] = last->n;
+
+	while (count >= 0 && count >= cmp)
+	{
+		if (stored_values[cmp] != stored_values[count])
+			return (0);
+		count--;
+		cmp++;
+	}
+	return (1);
 }
