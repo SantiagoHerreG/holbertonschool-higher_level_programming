@@ -11,6 +11,8 @@ int is_palindrome(listint_t **head)
 	listint_t *last;
 	int stored_values[100000], cmp = 0, count = 0;
 
+	if (!*head)
+		return (1);
 	last = *head;
 
 	if (!last->next)
