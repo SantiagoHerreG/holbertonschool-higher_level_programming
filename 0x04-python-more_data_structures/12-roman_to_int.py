@@ -5,14 +5,14 @@ def roman_to_int(roman_string):
     new_list = []
 
     if not roman_string:
-        return
+        return (0)
 
     for idx in range(len(roman_string)):
         for elem in my_dict:
             if roman_string[idx] == elem:
                 new_list.append(my_dict[elem])
     if len(new_list) != len(roman_string):
-        return
+        return (0)
 
     count = 0
 
