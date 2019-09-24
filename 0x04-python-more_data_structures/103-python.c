@@ -80,7 +80,7 @@ void print_python_bytes(PyObject *p)
 		size_bytes = 10;
 	}
 
-	for (i = 0; i <= size_bytes && i <= 10; i++)
+	for (i = 0; i <= size_bytes && i < 10; i++)
 	{
 		if (buffer[i])
 			printf(" %02x", buffer[i] & 0xff);
