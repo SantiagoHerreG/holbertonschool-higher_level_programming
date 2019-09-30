@@ -24,7 +24,7 @@ void print_python_list(PyObject *p)
 		return;
 	}
 
-	size_obj = (((PyVarObject *)(p))->ob_size);
+	size_obj = PySequence_Length(p);
 
 	printf("[*] Size of the Python List = %li\n", size_obj);
 	printf("[*] Allocated = %li\n", (((PyListObject *)(p))->allocated));
