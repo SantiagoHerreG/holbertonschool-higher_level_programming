@@ -107,8 +107,6 @@ void print_python_bytes(PyObject *p)
 
 void print_python_float(PyObject *p)
 {
-	double val;
-
 	printf("[.] float object info\n");
 	fflush(stdout);
 	if (!PyFloat_Check(p))
@@ -116,6 +114,4 @@ void print_python_float(PyObject *p)
 		printf("  [ERROR] Invalid Float Object\n");
 		return;
 	}
-	val = PyFloat_AsDouble(p);
-	printf("  value: %.16g\n", val);
 }
