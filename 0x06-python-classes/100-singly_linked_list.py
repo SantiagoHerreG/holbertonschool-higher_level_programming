@@ -57,6 +57,8 @@ class SinglyLinkedList:
             SinglyLinkedList.temp.next_node = my_new_node
 
     def __str__(self):
+        if SinglyLinkedList.__head is None:
+            return ""
         string = str(SinglyLinkedList.__head.data)
         SinglyLinkedList.temp = SinglyLinkedList.__head.next_node
         while (SinglyLinkedList.temp):
