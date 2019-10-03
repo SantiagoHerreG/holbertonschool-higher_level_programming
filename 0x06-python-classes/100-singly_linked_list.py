@@ -12,6 +12,7 @@ class Node:
     @property
     def data(self):
         return self.__data
+
     @data.setter
     def data(self, value):
         if type(value) is not int:
@@ -21,6 +22,7 @@ class Node:
     @property
     def next_node(self):
         return self.__next_node
+
     @next_node.setter
     def next_node(self, value):
         if (value and type(value) != Node):
@@ -31,6 +33,7 @@ class Node:
 class SinglyLinkedList:
 
     __head = None
+
     def __init__(self):
         pass
 
@@ -41,22 +44,22 @@ class SinglyLinkedList:
         else:
             SinglyLinkedList.temp = SinglyLinkedList.__head
             if (SinglyLinkedList.temp.data > my_new_node.data):
-                my_new_node.next_node(SinglyLinkedList.temp)
+                my_new_node.next_node = SinglyLinkedList.temp
                 SinglyLinkedList.__head = my_new_node
                 return
             while (SinglyLinkedList.temp and SinglyLinkedList.temp.next_node):
                 if SinglyLinkedList.temp.next_node.data > my_new_node.data:
-                    my_new_node.next_node(SinglyLinkedList.temp.next_node)
-                    SinglyLinkedList.temp.next_node(my_new_node)
+                    my_new_node.next_node = SinglyLinkedList.temp.next_node
+                    SinglyLinkedList.temp.next_node = my_new_node
                     return
                 else:
                     SinglyLinkedList.temp = SinglyLinkedList.temp.next_node
-            SinglyLinkedList.temp.next_node(my_new_node)
+            SinglyLinkedList.temp.next_node = my_new_node
 
     def __str__(self):
         string = str(SinglyLinkedList.__head.data)
         SinglyLinkedList.temp = SinglyLinkedList.__head.next_node
         while (SinglyLinkedList.temp):
             string += '\n' + str(SinglyLinkedList.temp.data)
-            SinglyLinkedList.temp = SinglyLinkedList.temp.next_node 
+            SinglyLinkedList.temp = SinglyLinkedList.temp.next_node
         return string
