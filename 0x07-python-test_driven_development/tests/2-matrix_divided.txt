@@ -1,0 +1,71 @@
+# 2-matrix_divided.txt
+----------------------------
+How to use 2-matrix_divided.txt: the function takes two args, a matrix of
+numbers and a number to be the divisor. Returns a new matrix.
+----------------------------
+
+Contains test cases for function matrix_divided()
+
+Test 1: matrix of 1 row, and float
+::
+    >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+    >>> print(matrix_divided([[1, 2, 0]], 2))
+    [[0.5, 1.0, 0.0]]
+
+Test 2: None arguments
+::
+    >>> print(matrix_divided(None, None))
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Test 3: second argument None
+::
+    >>> print(matrix_divided([[1, 2], [3, 4]], None))
+    Traceback (most recent call last):
+    TypeError: div must be a number
+
+Test 4: list as an argument
+:: 
+    >>> print(matrix_divided([1, 2, 3], 10))
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Test 5: matrix with rows of different size
+::
+    >>> print(matrix_divided([[1], [2, 3]], 2))
+    Traceback (most recent call last):
+    TypeError: Each row of the matrix must have the same size
+
+Test 6: a negative int and a float args
+::
+    >>> print(matrix_divided([[-1, -100]], 2.9))
+    [[-0.34, -34.48]]
+
+Test 7: Empty matrix
+::
+    >>> print(matrix_divided([[]], 2))
+    [[]]
+
+Test 8: Empty rows only
+::
+    >>> print(matrix_divided([[], []], 2))
+    [[], []]
+
+Test 9: Rows of different size (empty)
+::
+    >>> print(matrix_divided([[1, 2], []], 2))
+    Traceback (most recent call last):
+    TypeError: Each row of the matrix must have the same size
+
+Test 10: Strings as arguments
+::
+    >>> print(matrix_divided("hello", "world"))
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Test 11: Division by Zero
+::
+    >>> print(matrix_divided([[1, 2], [2, 3]], 0))
+    Traceback (most recent call last):
+    ZeroDivisionError: division by zero
+
