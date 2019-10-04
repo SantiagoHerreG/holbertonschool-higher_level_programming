@@ -1,0 +1,61 @@
+# 4-print_square.txt
+----------------------------
+How to use 4-print_square.txt: the function takes an int (size)
+prints a square of #'s size
+----------------------------
+
+Contains test cases for function print_square()
+
+Test 1: Normal case
+::
+    >>> print_square = __import__('4-print_square').print_square
+    >>> print_square(7)
+    #######
+    #######
+    #######
+    #######
+    #######
+    #######
+    #######
+
+Test 2: None argument
+::
+    >>> print_square(None)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+Test 3: Zero argument
+::
+    >>> print_square(0)
+    
+
+Test 4: list as an argument
+:: 
+    >>> print_square([1, 2, 3])
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+Test 5: negative size
+::
+    >>> print_square(-2)
+    Traceback (most recent call last):
+    ValueError: size must be >= 0
+
+Test 6: character
+::
+    >>> print_square('#')
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+Test 7: String as argument
+::
+    >>> print_square("3")
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+Test 8: letters
+::
+    >>> print_square('A')
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
