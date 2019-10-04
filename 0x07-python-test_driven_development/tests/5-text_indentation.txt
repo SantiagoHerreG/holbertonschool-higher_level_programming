@@ -1,0 +1,76 @@
+# 5-text_indentation.txt
+----------------------------
+How to use 5-text_indentation.txt: function that prints a text
+with 2 new lines after each of these characters: ., ? and :.
+----------------------------
+
+Contains test cases for function text_indentation()
+
+Test 1: Normal case
+::
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+    >>> text_indentation('Hi, my name is Santiago. I\'m 25 years old. Why do I like programming?: I love problem solving and learning new things')
+    Hi, my name is Santiago.
+    <BLANKLINE>
+    I'm 25 years old.
+    <BLANKLINE>
+    Why do I like programming?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+    I love problem solving and learning new things
+
+Test 2: None argument
+::
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+Test 3: second argument int
+:: 
+    >>> text_indentation(25)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+Test 4: empty string
+::
+    >>> text_indentation("")
+    
+Test 5: space only line
+::
+    >>> text_indentation(" ")
+    
+Test 6: only key characters in string
+::
+    >>> text_indentation("::..??")
+    :
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+
+Test 7: space at the end
+::
+    >>> text_indentation("This line has two spaces at the end and they are not printed  ")
+    This line has two spaces at the end and they are not printed
+
+Test 8: several spaces in a row
+::
+    >>> text_indentation("     ")
+
+Test 9: several spaces at the end of the line
+::
+    >>> text_indentation("Hi guys.   New things to learn.    ")
+    Hi guys.
+    <BLANKLINE>
+    New things to learn.
+    <BLANKLINE>
+
+
