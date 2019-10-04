@@ -1,0 +1,61 @@
+# 3-say_my_name.txt
+----------------------------
+How to use 3-say_my_name.txt: the function takes two args, must be strings
+and valid names e.g.:only letters, first letter is capital and others are lowercase.
+----------------------------
+
+Contains test cases for function say_my_name()
+
+Test 1: Normal case
+::
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
+    >>> say_my_name("Santiago", 'Herrera')
+    My name is Santiago Herrera
+
+Test 2: None arguments
+::
+    >>> say_my_name(None, None)
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+Test 3: second argument None
+::
+    >>> say_my_name("Santiago", None)
+    Traceback (most recent call last):
+    TypeError: last_name must be a string
+
+Test 4: list as an argument
+:: 
+    >>> say_my_name(["ok", "ok", "ko"], "Herrera")
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+Test 5: empty name
+::
+    >>> say_my_name("", "Herrera")
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+Test 6: empty surname
+::
+    >>> say_my_name("Santiago", "")
+    My name is Santiago 
+
+Test 7: Names without capital letter
+::
+    >>> say_my_name("santiago", "herre")
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+Test 8: Not letters
+::
+    >>> say_my_name("--*++2", "\n\n\t")
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+Test 9: last name with no ascii
+::
+    >>> say_my_name("Santi", "23 sidney")
+    Traceback (most recent call last):
+    TypeError: last_name must be a string
+
