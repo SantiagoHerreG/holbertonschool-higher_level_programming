@@ -21,11 +21,11 @@ f integers/floats")
         if type(rows) is not list:
             raise TypeError("matrix must be a matrix (list of lists) o\
 f integers/floats")
-            for nums in rows:
-                if (type(nums) is not int and type(nums) is not float):
-                    raise TypeError("matrix must be a matrix (list of lists) o\
+        for nums in rows:
+            if (type(nums) is not int and type(nums) is not float):
+                raise TypeError("matrix must be a matrix (list of lists) o\
 f integers/floats")
-
+                print(nums)
     length = len(matrix[0])
     for rows in matrix:
         if len(rows) != length:
