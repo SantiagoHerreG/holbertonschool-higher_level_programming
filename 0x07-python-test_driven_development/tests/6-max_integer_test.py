@@ -42,3 +42,10 @@ class TestMaxInteger(unittest.TestCase):
         """
         res = max_integer([-4, -2, -1])
         self.assertEqual(res, -1)
+
+    def test_first_is_max(self):
+        """ Checks if the return is correct in case of first element is max
+
+        """
+        res = max_integer([10, 8, 7, 1])
+        self.assertEqual(res, 10)
