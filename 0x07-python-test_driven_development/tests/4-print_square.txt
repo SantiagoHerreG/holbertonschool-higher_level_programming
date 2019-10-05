@@ -59,3 +59,8 @@ Test 8: letters
     Traceback (most recent call last):
     TypeError: size must be an integer
 
+Test 9: No argument passed
+::
+    >>> print_square()
+    Traceback (most recent call last):
+    TypeError: print_square() missing 1 required positional argument: 'size'
