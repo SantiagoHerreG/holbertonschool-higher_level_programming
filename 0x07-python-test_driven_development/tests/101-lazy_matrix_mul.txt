@@ -1,0 +1,55 @@
+# 101-lazy_matrix_mul.txt
+----------------------------
+How to use 101-lazy_matrix_mul.txt: function that multiplies 2 matrices using Numpy
+----------------------------
+
+Contains test cases for function lazy_matrix_mul()
+
+Test 1: Normal case, two square matrices
+::
+    >>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+    >>> print(lazy_matrix_mul([[2, 2], [5, 5]], [[3, 3], [1, 1]]))
+    [[ 8  8]
+     [20 20]]
+
+Test 2: None argument
+::
+    >>> print(lazy_matrix_mul(None, None))
+    Traceback (most recent call last):
+    TypeError: m_a must be a list
+
+Test 3: second argument int and float, one line
+:: 
+    >>> print(lazy_matrix_mul([[1, 2, 3]], [[2.5], [3.1], [0]]))
+    [[ 8.7]]
+
+Test 4: empty matrix
+::
+    >>> print(lazy_matrix_mul([[]], [[1]]))
+    Traceback (most recent call last):
+    ValueError: m_a can't be empty
+    
+Test 5: empty list
+::
+    >>> print(lazy_matrix_mul([[1]], []))
+    Traceback (most recent call last):
+    ValueError: m_b can't be empty
+    
+Test 6: rows of different size
+::
+    >>> print(lazy_matrix_mul([[1, 2], [1]], [[3, 4], [5, 6]]))
+    Traceback (most recent call last):
+    TypeError: each row of m_a must be of the same size
+
+Test 7: not integers
+::
+    >>> print(lazy_matrix_mul([[1, "-", 3]], [[2.5], [3.1], ["b"]]))
+    Traceback (most recent call last):
+    TypeError: m_a should contain only integers or floats
+
+Test 8: multiplication not possible
+::
+    >>> print(lazy_matrix_mul([[2, 4], [6, 8]], [[1, 2, 3, 4]]))
+    Traceback (most recent call last):
+    ValueError: m_a and m_b can't be multiplied
+
