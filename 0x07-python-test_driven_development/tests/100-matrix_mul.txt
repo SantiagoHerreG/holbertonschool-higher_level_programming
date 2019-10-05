@@ -93,3 +93,15 @@ Test 15: missing two arguments
     >>> print(matrix_mul()) # doctest: +ELLIPSIS
     Traceback (most recent call last):
     TypeError: ...
+
+Test 16: list only
+::
+    >>> print(matrix_mul([3, 4, 5, 6], [[1, 2], [1]]))
+    Traceback (most recent call last):
+    TypeError: m_a must be a list of lists
+
+Test 17: list only
+::
+    >>> print(matrix_mul([[3, 4], [5, 6]], [1, 2, 1]))
+    Traceback (most recent call last):
+    TypeError: m_b must be a list of lists
