@@ -11,7 +11,9 @@ class Rectangle:
     """
 
     number_of_instances = 0
+    """ int: number of instances initiallized """
     print_symbol = "#"
+    """ (any type): symbol used for printing the rectangule __str__ method"""
 
     def __init__(self, width=0, height=0):
         """ __init__ method for the class.
