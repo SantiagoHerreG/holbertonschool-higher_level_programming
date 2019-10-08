@@ -24,8 +24,8 @@ class Rectangle:
             width (int): size.
             heigth (tuple): size
         """
-        self.height = height
         self.width = width
+        self.height = height
 
         type(self).number_of_instances += 1
 
