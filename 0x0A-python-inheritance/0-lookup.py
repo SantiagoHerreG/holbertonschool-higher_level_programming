@@ -1,4 +1,9 @@
 #!/usr/bin/python3
-def lookup(obj):
+""" Module for dir()
+"""
 
+
+def lookup(obj):
+    """ Returns the list of names in a class
+    """
     return list(dir(obj))
