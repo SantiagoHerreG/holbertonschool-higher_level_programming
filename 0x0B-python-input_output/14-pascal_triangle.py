@@ -15,16 +15,12 @@ def pascal_triangle(n):
     if n == 1:
         return triangle
 
-    triangle.append([1, 1])
+    old_row = [1, 1]
+    triangle.append(old_row)
     if n == 2:
         return triangle
 
-    old_row = [1, 2, 1]
-    triangle.append(old_row)
-    if n == 3:
-        return triangle
-
-    for lines in range(4, n + 1):
+    for lines in range(3, n + 1):
 
         new_row = []
         new_row.append(1)
