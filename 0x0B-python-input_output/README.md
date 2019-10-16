@@ -1,4 +1,4 @@
-# Python - Inheritance
+# Python - Input/Output
 
 ## Description
 
