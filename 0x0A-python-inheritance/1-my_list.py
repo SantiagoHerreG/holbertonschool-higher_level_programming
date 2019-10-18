@@ -11,4 +11,6 @@ class MyList(list):
     def print_sorted(self):
         """ Prints the list sorted
         """
-        print(sorted(self))
+        new_list = sorted(self)
+        print(new_list)
+        return new_list
