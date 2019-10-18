@@ -29,3 +29,7 @@ except KeyboardInterrupt:
         if status_list[i]:
             print("{}: {}".format(status_names[i], status_list[i]))
     raise
+print("File size: {}".format(file_size))
+for i in range(len(status_list)):
+    if status_list[i]:
+        print("{}: {}".format(status_names[i], status_list[i]))
