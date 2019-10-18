@@ -24,9 +24,13 @@ with open("/proc/" + sys.argv[1] + "/mem", mode="rb+") as f:
 
     f.seek(address_start)
     read_heap = f.read(address_end - address_start)
-    position_of_string = read_heap.index(bytes(sys.argv[2], "ASCII"))
-
+    try:
+        position_of_string = read_heap.index(bytes(sys.argv[2], "ASCII"))
+    except:
+        return
     f.seek(address_start + position_of_string)
-
+    if sys.argv[3] == "":
+        f.write("\0")
+        return
     new_str = bytes(sys.argv[3], "ASCII")
     f.write(new_str)
