@@ -52,3 +52,39 @@ Test 8: area method
     >>> bg.area() # doctest: +ELLIPSIS
     Traceback (most recent call last):
     Exception: ...
+
+Test 9: value is None
+::
+    >>> bg.integer_validator("new", None) # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError: ...
+
+Test 10: value is tuple
+::
+    >>> bg.integer_validator("new", (-7,)) # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError: ...
+
+Test 11: value is list
+::
+    >>> bg.integer_validator("new", [-7]) # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError: ...
+
+Test 12: value is string
+::
+    >>> bg.integer_validator("new", "hello") # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError: ...
+
+Test 13: value is boolean
+::
+    >>> bg.integer_validator("new", True) # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError: ...
+
+Test 14: value is set
+::
+    >>> bg.integer_validator("new", {-7}) # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError: ...
