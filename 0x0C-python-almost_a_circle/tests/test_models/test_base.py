@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unittest for max_integer([..])
+"""Unittest for base.py
 """
 import unittest
 from models.base import Base
@@ -24,39 +24,32 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b4.id, 12)
         self.assertEqual(b5.id, 4)
 
-'''
-   def test_empty(self):
-        """ Checks if the return is None in case of empty list
-
+    def test_zero(self):
+        """ Checks if the return is correct in case of id = 0
         """
-        res = max_integer([])
-        self.assertIsNone(res)
-
-    def test_unique(self):
-        """ Checks if the return is correct in case of one element
-
-        """
-        res = max_integer([1])
-        self.assertEqual(res, 1)
-
-    def test_two_equals(self):
-        """ Checks if the return is correct in case of repeated elements
-
-        """
-        res = max_integer([0, 1, 2, 3, 3, 2])
-        self.assertEqual(res, 3)
+        b1 = Base(0)
+        self.assertEqual(b1.id, 0)
 
     def test_negatives(self):
-        """ Checks if the return is correct in case of negative elements
+        """ Checks if the return is correct in case of negative id
 
         """
-        res = max_integer([-4, -2, -1])
-        self.assertEqual(res, -1)
+        b1 = Base(-5)
+        self.assertEqual(b1.id, -5)
 
-    def test_first_is_max(self):
-        """ Checks if the return is correct in case of first element is max
+    def test_two_equals(self):
+        """ Checks if the return is correct in case of repeated ids
 
         """
-        res = max_integer([10, 8, 7, 1])
-        self.assertEqual(res, 10)
-'''
+        b1 = Base(1)
+        b2 = Base(1)
+        self.assertEqual(b1.id, 1)
+        self.assertEqual(b2.id, 1)
+        b3 = Base()
+        self.assertEqual(b3.id, 6)
+
+    def test_more_args(self):
+        """ Checks if the error is raised in case of more arguments
+
+        """
+        self.assertRaises(TypeError, Base(), 1, 2)
