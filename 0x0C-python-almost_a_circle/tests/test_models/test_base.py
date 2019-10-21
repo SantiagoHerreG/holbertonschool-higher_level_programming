@@ -5,6 +5,18 @@ import unittest
 from models.base import Base
 
 
+def setUpModule():
+    """Resets the Base Class for the module
+    """
+    Base._Base__nb_objects = 0
+
+
+def tearDownModule():
+    """Resets the Base Class for the module
+    """
+    Base._Base__nb_objects = 0
+
+
 class TestBase(unittest.TestCase):
     """Test cases using Unittest, this class is a subclass of unittest.TestCase
 
