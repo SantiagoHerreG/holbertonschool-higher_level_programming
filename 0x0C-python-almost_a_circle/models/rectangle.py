@@ -83,7 +83,54 @@ class Rectangle(Base):
     def display(self):
         """Prints in stdout the representation of the rectangle
         """
+        for lines in range(self.__y):
+            print()
         for rows in range(self.__height):
+            for spaces in range(self.__x):
+                print(" ", end="")
             for col in range(self.__width):
                 print("#", end="")
             print()
+
+    def __str__(self):
+        """Overrides the string method
+        """
+        return "[Rectangle] " + "(" + str(self.id) + ") " + str(self.__x) + "\
+/" + str(self.__y) + " - " + str(self.__width) + "/" + str(self.__height)
+
+    def update(self, *args, **kwargs):
+        """Method that updates a rectangle
+        """
+        length = len(args)
+        len_kw = len(kwargs)
+        if length == 0 and len_kw == 0:
+            super().__init__(None)
+            return
+        if length > 5:
+            raise TypeError("update takes a maximum of 5 *args")
+
+        if length:
+
+            super().__init__(args[0])
+
+            if length >= 2:
+                self.width = args[1]
+            if length >= 3:
+                self.height = args[2]
+            if length >= 4:
+                self.x = args[3]
+            if length == 5:
+                self.y = args[4]
+        elif len_kw:
+
+            for key, value in kwargs.items():
+                if key == "width":
+                    self.width = value
+                elif key == "height":
+                    self.height = value
+                elif key == "x":
+                    self.x = value
+                elif key == "y":
+                    self.y = value
+                elif key == "id":
+                    super().__init__(value)
