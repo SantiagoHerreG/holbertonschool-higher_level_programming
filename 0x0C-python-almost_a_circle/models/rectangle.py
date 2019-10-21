@@ -134,3 +134,10 @@ class Rectangle(Base):
                     self.y = value
                 elif key == "id":
                     super().__init__(value)
+
+    def to_dictionary(self):
+        """Method that returns the dictionary representation of a Rectangle
+        """
+        rect_to_dict = {'id': self.id, 'width': self.width, 'height':
+                        self.height, 'x': self.x, 'y': self.y}
+        return rect_to_dict

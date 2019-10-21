@@ -356,3 +356,16 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.id, 100)
         self.assertEqual(r1.width, 7)
         self.assertEqual(r1.x, 1)
+
+    def test_018_dict_representation(self):
+        """Tests the to_dictionary() method return
+        """
+        r1 = Rectangle(7, 7, 0, 0, 100)
+        r1_dict = r1.to_dictionary()
+        self.assertTrue(type(r1_dict) is dict)
+        self.assertEqual(r1_dict['width'], 7)
+        self.assertEqual(r1_dict['height'], 7)
+        self.assertEqual(r1_dict['x'], 0)
+        self.assertEqual(r1_dict['y'], 0)
+        self.assertEqual(r1_dict['id'], 100)
+        self.assertTrue(len(r1_dict) == 5)

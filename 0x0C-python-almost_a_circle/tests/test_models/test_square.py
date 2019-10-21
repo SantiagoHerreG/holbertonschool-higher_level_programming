@@ -424,3 +424,21 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.size, 7)
         self.assertEqual(s1.x, 1)
         self.assertEqual(s1.y, 1)
+
+    def test_15_dict_representation(self):
+        """Tests the to_dictionary() method return
+        """
+        s1 = Square(7, 0, 0, 100)
+        s1_dict = s1.to_dictionary()
+        self.assertTrue(type(s1.to_dictionary()) is dict)
+        self.assertTrue(type(s1_dict) is dict)
+        self.assertEqual(s1_dict['size'], 7)
+        self.assertEqual(s1.to_dictionary()['size'], 7)
+        self.assertEqual(s1_dict['x'], 0)
+        self.assertEqual(s1.to_dictionary()['x'], 0)
+        self.assertEqual(s1_dict['y'], 0)
+        self.assertEqual(s1.to_dictionary()['y'], 0)
+        self.assertEqual(s1_dict['id'], 100)
+        self.assertEqual(s1.to_dictionary()['id'], 100)
+        self.assertTrue(len(s1_dict) == 4)
+        self.assertTrue(len(s1.to_dictionary()) == 4)
