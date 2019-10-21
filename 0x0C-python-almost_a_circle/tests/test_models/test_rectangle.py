@@ -333,3 +333,26 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError) as cm:
             r1.update(y=-5)
         self.assertTrue("y must be >= 0" in str(cm.exception))
+
+    def test_017_kwargs(self):
+        """Tests kwargs not matching or avoided
+        """
+        r1 = Rectangle(7, 7, 0, 0, 100)
+        r1.update(id=-5)
+        self.assertEqual(r1.id, -5)
+        r1.update(wid=1, heig=1, id=1, x=1, y=1)
+        self.assertEqual(r1.id, 1)
+        self.assertEqual(r1.width, 7)
+        self.assertEqual(r1.height, 7)
+        self.assertEqual(r1.x, 1)
+        self.assertEqual(r1.y, 1)
+        r1.update(nn=0)
+        self.assertEqual(r1.id, 1)
+        self.assertEqual(r1.width, 7)
+        self.assertEqual(r1.height, 7)
+        self.assertEqual(r1.x, 1)
+        self.assertEqual(r1.y, 1)
+        r1.update(100, width=100, x=100)
+        self.assertEqual(r1.id, 100)
+        self.assertEqual(r1.width, 7)
+        self.assertEqual(r1.x, 1)
