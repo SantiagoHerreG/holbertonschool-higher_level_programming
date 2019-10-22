@@ -68,3 +68,28 @@ f Base")
 
         with open(cls.__name__ + ".json", encoding="UTF-8", mode="w") as f:
             f.write(json_str)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Returns an instance with all attributes already set
+        """
+        if (dictionary is None and cls.__name__ != "Base"):
+            raise TypeError("create takes a key/value argument")
+
+        if cls.__name__ == "Rectangle":
+            dummy = cls(1, 1)
+            if len(dictionary):
+                dummy.update(**dictionary)
+            return dummy
+        elif cls.__name__ == "Square":
+            dummy = cls(1)
+            if len(dictionary):
+                dummy.update(**dictionary)
+            return dummy
+        else:
+            try:
+                new_id = dictionary['id']
+            except:
+                new_id = None
+            dummy = cls(new_id)
+            return dummy

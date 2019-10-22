@@ -241,13 +241,15 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.height, 20)
         self.assertEqual(r1.x, 10)
         self.assertEqual(r1.y, 10)
+        r1.update()
+        self.assertEqual(r1.id, 43)
 
     def test_015_update_args(self):
         """ Checks number of args in update method
         """
         r1 = Rectangle(7, 7, 0, 0, 1)
         r1.update()
-        self.assertEqual(r1.id, 43)
+        self.assertEqual(r1.id, 44)
         with self.assertRaises(TypeError):
             r1.update(1, 2, 3, 4, 5, 6)
 

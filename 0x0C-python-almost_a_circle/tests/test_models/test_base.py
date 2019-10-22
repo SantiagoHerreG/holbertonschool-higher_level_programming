@@ -201,3 +201,89 @@ class TestBase(unittest.TestCase):
         self.assertEqual(json_list, [{'hi': 'world'}])
         json_list = Square.from_json_string('[]')
         self.assertEqual(json_list, [])
+
+    def test_09_create(self):
+        """Tests possible values for create method
+        """
+        with self.assertRaises(TypeError):
+            Base.create([])
+        with self.assertRaises(TypeError):
+            Base.create(())
+        with self.assertRaises(TypeError):
+            Base.create(True)
+        with self.assertRaises(TypeError):
+            Base.create(2.5)
+        with self.assertRaises(TypeError):
+            Rectangle.create([])
+        with self.assertRaises(TypeError):
+            Rectangle.create(())
+        with self.assertRaises(TypeError):
+            Rectangle.create(True)
+        with self.assertRaises(TypeError):
+            Rectangle.create(2.5)
+        with self.assertRaises(TypeError):
+            Square.create([])
+        with self.assertRaises(TypeError):
+            Square.create(())
+        with self.assertRaises(TypeError):
+            Square.create(True)
+        with self.assertRaises(TypeError):
+            Square.create(2.5)
+
+        with self.assertRaises(TypeError):
+            Rectangle.create(None)
+        with self.assertRaises(TypeError):
+            Square.create(None)
+
+        b1 = Base.create()
+        self.assertEqual(b1.id, 8)
+
+        r1 = Rectangle.create()
+        self.assertEqual(r1.id, 9)
+
+        r1 = Rectangle.create(**{})
+        self.assertEqual(r1.id, 10)
+        self.assertEqual(r1.width, 1)
+        self.assertEqual(r1.height, 1)
+        self.assertEqual(r1.x, 0)
+        self.assertEqual(r1.y, 0)
+
+        r1 = Rectangle.create(**({'width': 2, 'height': 3, 'x': 1, 'y': 0, 'i\
+d': 100}))
+        self.assertEqual(r1.width, 2)
+        self.assertEqual(r1.height, 3)
+        self.assertEqual(r1.x, 1)
+        self.assertEqual(r1.y, 0)
+        self.assertEqual(r1.id, 100)
+
+        s1 = Square.create()
+        self.assertEqual(s1.id, 12)
+
+        s1 = Square.create(**{})
+        self.assertEqual(s1.id, 13)
+        self.assertEqual(s1.size, 1)
+        self.assertEqual(s1.x, 0)
+        self.assertEqual(s1.y, 0)
+
+        s1 = Square.create(**({'size': 5, 'x': 2, 'y': 3, 'id': 98}))
+        self.assertEqual(s1.width, 5)
+        self.assertEqual(s1.height, 5)
+        self.assertEqual(s1.size, 5)
+        self.assertEqual(s1.x, 2)
+        self.assertEqual(s1.y, 3)
+        self.assertEqual(s1.id, 98)
+
+        s1 = Square.create(**({'size': 5}))
+        self.assertEqual(s1.width, 5)
+        self.assertEqual(s1.height, 5)
+        self.assertEqual(s1.size, 5)
+        self.assertEqual(s1.x, 0)
+        self.assertEqual(s1.y, 0)
+        self.assertEqual(s1.id, 15)
+
+        r1 = Rectangle.create(**({'height': 3}))
+        self.assertEqual(r1.width, 1)
+        self.assertEqual(r1.height, 3)
+        self.assertEqual(r1.x, 0)
+        self.assertEqual(r1.y, 0)
+        self.assertEqual(r1.id, 16)
