@@ -149,6 +149,10 @@ class TestBase(unittest.TestCase):
         with open("Base.json", encoding="UTF-8") as f:
             self.assertEqual(f.read(), "[]")
 
+        b1 = Base(89)
+        with self.assertRaises(AttributeError):
+            Base.save_to_file([b1])
+
         r1 = Rectangle(2, 2)
         Rectangle.save_to_file([r1])
         self.assertTrue(os.path.isfile('Rectangle.json'))
@@ -306,3 +310,225 @@ d': 100}))
         self.assertEqual(r1.x, 0)
         self.assertEqual(r1.y, 0)
         self.assertEqual(r1.id, 18)
+
+    def test_10_load_from_file(self):
+        """Tests if the method load from file is returning correctly
+        if the file does not exist, it should return an empty list
+        """
+
+        os.remove('Rectangle.json')
+        new_list_objects = Rectangle.load_from_file()
+        self.assertEqual(new_list_objects, [])
+
+        os.remove('Square.json')
+        new_list_objects = Square.load_from_file()
+        self.assertEqual(new_list_objects, [])
+
+        os.remove('Base.json')
+        new_list_objects = Base.load_from_file()
+        self.assertEqual(new_list_objects, [])
+
+        s1 = Square(100)
+        Square.save_to_file([s1])
+        list_Square = Square.load_from_file()
+        self.assertTrue(type(list_Square), list)
+        self.assertTrue(type(list_Square[0]), Square)
+        self.assertEqual(list_Square[0].size, 100)
+        self.assertEqual(list_Square[0].width, 100)
+        self.assertEqual(list_Square[0].height, 100)
+        self.assertEqual(list_Square[0].x, 0)
+        self.assertEqual(list_Square[0].y, 0)
+
+        r1 = Rectangle(4, 5, 1, 1, 89)
+        Rectangle.save_to_file([r1])
+        list_Rectangle = Rectangle.load_from_file()
+        self.assertTrue(type(list_Rectangle), list)
+        self.assertTrue(type(list_Rectangle[0]), Rectangle)
+        self.assertEqual(list_Rectangle[0].width, 4)
+        self.assertEqual(list_Rectangle[0].height, 5)
+        self.assertEqual(list_Rectangle[0].x, 1)
+        self.assertEqual(list_Rectangle[0].y, 1)
+        self.assertEqual(list_Rectangle[0].id, 89)
+
+        with self.assertRaises(TypeError):
+            Rectangle.load_from_file(1)
+        with self.assertRaises(TypeError):
+            Square.load_from_file([])
+        r1 = Rectangle(5, 6, 2, 2, 90)
+        r2 = Rectangle(2, 3, 0, 0, 70)
+        Rectangle.save_to_file([r1, r2])
+        list_Rectangle = Rectangle.load_from_file()
+        self.assertTrue(type(list_Rectangle), list)
+        self.assertTrue(type(list_Rectangle[0]), Rectangle)
+        self.assertEqual(list_Rectangle[0].width, 5)
+        self.assertEqual(list_Rectangle[0].height, 6)
+        self.assertEqual(list_Rectangle[0].x, 2)
+        self.assertEqual(list_Rectangle[0].y, 2)
+        self.assertEqual(list_Rectangle[0].id, 90)
+        self.assertTrue(type(list_Rectangle[1]), Rectangle)
+        self.assertEqual(list_Rectangle[1].width, 2)
+        self.assertEqual(list_Rectangle[1].height, 3)
+        self.assertEqual(list_Rectangle[1].x, 0)
+        self.assertEqual(list_Rectangle[1].y, 0)
+        self.assertEqual(list_Rectangle[1].id, 70)
+
+    def test_11_save_to_file_csv(self):
+        """Checks the CSV string representation in a file
+        """
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv("hi")
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv(())
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv({})
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv(True)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv(2.5)
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv(["hi"])
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv([[]])
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv([()])
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv([2.5])
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv([True])
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv()
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv("hi")
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv(())
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv({})
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv(True)
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv(2.5)
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv(["hi"])
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv([[]])
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv([()])
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv([2.5])
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv([True])
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv()
+
+        try:
+            os.remove('Base.csv')
+        except:
+            pass
+        Base.save_to_file_csv(None)
+        self.assertTrue(os.path.isfile('Base.csv'))
+        with open("Base.csv", encoding="UTF-8") as f:
+            self.assertEqual(f.read(), "")
+
+        try:
+            os.remove('Base.csv')
+        except:
+            pass
+        Base.save_to_file_csv([])
+        self.assertTrue(os.path.isfile('Base.csv'))
+        with open("Base.csv", encoding="UTF-8") as f:
+            self.assertEqual(f.read(), "")
+
+        b1 = Base(89)
+        Base.save_to_file_csv([b1])
+        self.assertTrue(os.path.isfile('Base.csv'))
+        with open("Base.csv", encoding="UTF-8") as f:
+            self.assertEqual(f.read(), "89\n")
+
+        r1 = Rectangle(2, 2, 0, 0, 100)
+        Rectangle.save_to_file_csv([r1])
+        self.assertTrue(os.path.isfile('Rectangle.csv'))
+        with open("Rectangle.csv", encoding="UTF-8") as f:
+            self.assertEqual(f.read(), "100,2,2,0,0\n")
+
+        s1 = Square(5, 1, 1, 1)
+        Square.save_to_file_csv([s1])
+        self.assertTrue(os.path.isfile('Square.csv'))
+        with open("Square.csv", encoding="UTF-8") as f:
+            self.assertEqual(f.read(), "1,5,1,1\n")
+
+    def test_12_load_from_file(self):
+        """Tests if the method load from file CSV is returning correctly
+        if the file does not exist, it should return an empty list
+        """
+
+        os.remove('Rectangle.csv')
+        new_list_objects = Rectangle.load_from_file_csv()
+        self.assertEqual(new_list_objects, [])
+
+        os.remove('Square.csv')
+        new_list_objects = Square.load_from_file_csv()
+        self.assertEqual(new_list_objects, [])
+
+        os.remove('Base.csv')
+        new_list_objects = Base.load_from_file_csv()
+        self.assertEqual(new_list_objects, [])
+
+        s1 = Square(100)
+        Square.save_to_file_csv([s1])
+        list_Square = Square.load_from_file_csv()
+        self.assertTrue(type(list_Square), list)
+        self.assertTrue(type(list_Square[0]), Square)
+        self.assertEqual(list_Square[0].size, 100)
+        self.assertEqual(list_Square[0].width, 100)
+        self.assertEqual(list_Square[0].height, 100)
+        self.assertEqual(list_Square[0].x, 0)
+        self.assertEqual(list_Square[0].y, 0)
+
+        r1 = Rectangle(4, 5, 1, 1, 89)
+        Rectangle.save_to_file_csv([r1])
+        list_Rectangle = Rectangle.load_from_file_csv()
+        self.assertTrue(type(list_Rectangle), list)
+        self.assertTrue(type(list_Rectangle[0]), Rectangle)
+        self.assertEqual(list_Rectangle[0].width, 4)
+        self.assertEqual(list_Rectangle[0].height, 5)
+        self.assertEqual(list_Rectangle[0].x, 1)
+        self.assertEqual(list_Rectangle[0].y, 1)
+        self.assertEqual(list_Rectangle[0].id, 89)
+
+        with self.assertRaises(TypeError):
+            Rectangle.load_from_file_csv(1)
+        with self.assertRaises(TypeError):
+            Square.load_from_file_csv([])
+        r1 = Rectangle(5, 6, 2, 2, 90)
+        r2 = Rectangle(2, 3, 0, 0, 70)
+        Rectangle.save_to_file_csv([r1, r2])
+        list_Rectangle = Rectangle.load_from_file_csv()
+        self.assertTrue(type(list_Rectangle), list)
+        self.assertTrue(type(list_Rectangle[0]), Rectangle)
+        self.assertEqual(list_Rectangle[0].width, 5)
+        self.assertEqual(list_Rectangle[0].height, 6)
+        self.assertEqual(list_Rectangle[0].x, 2)
+        self.assertEqual(list_Rectangle[0].y, 2)
+        self.assertEqual(list_Rectangle[0].id, 90)
+        self.assertTrue(type(list_Rectangle[1]), Rectangle)
+        self.assertEqual(list_Rectangle[1].width, 2)
+        self.assertEqual(list_Rectangle[1].height, 3)
+        self.assertEqual(list_Rectangle[1].x, 0)
+        self.assertEqual(list_Rectangle[1].y, 0)
+        self.assertEqual(list_Rectangle[1].id, 70)
+
+        s1 = Square(5, 6, 2, 2)
+        s2 = Square(2, 3, 0, 0)
+        Square.save_to_file_csv([s1, s2])
+        list_Square = Square.load_from_file_csv()
+        self.assertTrue(type(list_Square), list)
+        self.assertTrue(type(list_Square[0]), Square)
+        self.assertEqual(list_Square[0].size, 5)
+        self.assertEqual(list_Square[0].x, 6)
+        self.assertEqual(list_Square[0].y, 2)
+        self.assertEqual(list_Square[0].id, 2)
+        self.assertTrue(type(list_Square[1]), Square)
+        self.assertEqual(list_Square[1].size, 2)
+        self.assertEqual(list_Square[1].x, 3)
+        self.assertEqual(list_Square[1].y, 0)
+        self.assertEqual(list_Square[1].id, 0)

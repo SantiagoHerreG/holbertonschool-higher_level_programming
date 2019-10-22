@@ -2,6 +2,7 @@
 """This class will be the base of all other classes in this project.
 """
 import json
+import csv
 
 
 class Base:
@@ -54,12 +55,12 @@ class Base:
             list_objs = []
 
         if type(list_objs) is not list:
-            raise TypeError("save_to_file takes a list of instances of Base")
+            raise TypeError("save_to_file takes a list of instances of cls")
 
         for elems in list_objs:
             if isinstance(elems, Base) is not True:
                 raise TypeError("save_to_file takes a list of instances o\
-f Base")
+f cls")
         new_list = []
         for objs in list_objs:
             new_list.append(objs.to_dictionary())
@@ -93,3 +94,111 @@ f Base")
                 new_id = None
             dummy = cls(new_id)
             return dummy
+
+    @classmethod
+    def load_from_file(cls):
+        """Returns a list of instances of the called class
+        """
+        try:
+            with open(cls.__name__ + ".json", encoding="UTF-8") as f:
+                read_json = f.read()
+        except:
+            return []
+
+        list_python_dicts = Base.from_json_string(read_json)
+
+        instances_list = []
+        for dicts in list_python_dicts:
+            instances_list.append(cls.create(**dicts))
+
+        return instances_list
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Serializes the instances to CSV format
+        """
+        if list_objs is None:
+            list_objs = []
+
+        if type(list_objs) is not list:
+            raise TypeError("save_to_file_cvs takes a list of instances o\
+f " + cls.__name__)
+
+        for elems in list_objs:
+            if isinstance(elems, Base) is not True:
+                raise TypeError("save_to_file_csv takes a list of instances o\
+f " + cls.__name__)
+        string_to_save = ""
+        if cls.__name__ == "Rectangle":
+            for elems in list_objs:
+                string_to_save += str(elems.id) + ","
+                string_to_save += str(elems.width) + ","
+                string_to_save += str(elems.height) + ","
+                string_to_save += str(elems.x) + ","
+                string_to_save += str(elems.y)
+                string_to_save += '\n'
+
+            with open("Rectangle.csv", encoding="UTF-8", mode="w") as f:
+                f.write(string_to_save)
+            return
+
+        if cls.__name__ == "Square":
+            for elems in list_objs:
+                string_to_save += str(elems.id) + ","
+                string_to_save += str(elems.size) + ","
+                string_to_save += str(elems.x) + ","
+                string_to_save += str(elems.y)
+                string_to_save += '\n'
+
+            with open("Square.csv", encoding="UTF-8", mode="w") as f:
+                f.write(string_to_save)
+            return
+        if cls.__name__ == "Base":
+            for elems in list_objs:
+                string_to_save += str(elems.id)
+                string_to_save += '\n'
+
+            with open("Base.csv", encoding="UTF-8", mode="w") as f:
+                f.write(string_to_save)
+            return
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Deserializes the instances from CSV format
+        """
+        try:
+            with open(cls.__name__ + ".csv", encoding="UTF-8") as f:
+                read_csv = csv.reader(f, delimiter=",")
+        
+                list_python_dicts = [] 
+                if cls.__name__ == "Rectangle":
+                    for lines in read_csv:
+                        new_dict = {}
+                        new_dict['id'] = int(lines[0])
+                        new_dict['width'] = int(lines[1])
+                        new_dict['height'] = int(lines[2])
+                        new_dict['x'] = int(lines[3])
+                        new_dict['y'] = int(lines[4])
+                        list_python_dicts.append(new_dict.copy())
+                if cls.__name__ == "Square":
+                    for lines in read_csv:
+                        new_dict = {}
+                        new_dict['id'] = int(lines[0])
+                        new_dict['size'] = int(lines[1])
+                        new_dict['x'] = int(lines[2])
+                        new_dict['y'] = int(lines[3])
+                        list_python_dicts.append(new_dict.copy())
+
+                if cls.__name__ == "Base":
+                    for lines in read_csv:
+                        new_dict = {}
+                        new_dict['id'] = int(lines[0])
+                        list_python_dicts.append(new_dict.copy())
+
+                instances_list = []
+                for dicts in list_python_dicts:
+                    instances_list.append(cls.create(**dicts))
+
+                return instances_list
+        except:
+            return []
