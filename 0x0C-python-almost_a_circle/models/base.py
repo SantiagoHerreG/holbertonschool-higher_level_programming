@@ -169,8 +169,8 @@ f " + cls.__name__)
         try:
             with open(cls.__name__ + ".csv", encoding="UTF-8") as f:
                 read_csv = csv.reader(f, delimiter=",")
-        
-                list_python_dicts = [] 
+
+                list_python_dicts = []
                 if cls.__name__ == "Rectangle":
                     for lines in read_csv:
                         new_dict = {}
