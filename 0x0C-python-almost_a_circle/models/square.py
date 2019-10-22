@@ -11,24 +11,19 @@ class Square(Rectangle):
     def __init__(self, size, x=0, y=0, id=None):
         """Constructor for the Square instances
         """
-        self.size = size
-        self.x = x
-        self.y = y
-        super(Rectangle, self).__init__(id)
+        super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
         """ Getter and setter methods for the instance attribute __size
         Validation of the input is done by the Rectangle superclass update.
         """
-        return self.__size
+        return self.width
 
     @size.setter
     def size(self, value):
-
         self.width = value
         self.height = value
-        self.__size = value
 
     def __str__(self):
         """Overrides the string method
