@@ -8,6 +8,7 @@ from models.square import Square
 import io
 import sys
 import os
+import pep8
 
 
 def setUpModule():
@@ -26,6 +27,21 @@ class TestBase(unittest.TestCase):
     """Test cases using Unittest, this class is a subclass of unittest.TestCase
 
     """
+    def test_pep8(self):
+        """Pep8 checker thanks to
+        https://gist.github.com/benjiyamin/e87a77c5d4d29e76b20c4176d96499f5
+        """
+        style = pep8.StyleGuide()
+        style.options.max_line_length = 80  # Set this to maximum line length
+        filenames = []
+        for root, _, files in os.walk('./'):  # Set this to desired folder
+            python_files = [f for f in files if f.endswith('.py')]
+            for file in python_files:
+                filename = '{0}/{1}'.format(root, file)
+                filenames.append(filename)
+        check = style.check_files(filenames)
+        self.assertEqual(check.total_errors, 0)
+
     def test_01_case(self):
         """ Checks if the return is correct
 
