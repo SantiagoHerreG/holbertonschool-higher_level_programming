@@ -234,6 +234,10 @@ class TestBase(unittest.TestCase):
             Rectangle.create(None)
         with self.assertRaises(TypeError):
             Square.create(None)
+        with self.assertRaises(TypeError):
+            Rectangle.create([], **{})
+        with self.assertRaises(TypeError):
+            Square.create([], **{})
 
         b1 = Base.create()
         self.assertEqual(b1.id, 8)
@@ -287,3 +291,18 @@ d': 100}))
         self.assertEqual(r1.x, 0)
         self.assertEqual(r1.y, 0)
         self.assertEqual(r1.id, 16)
+
+        s1 = Square.create(**({'hi': 5}))
+        self.assertEqual(s1.width, 1)
+        self.assertEqual(s1.height, 1)
+        self.assertEqual(s1.size, 1)
+        self.assertEqual(s1.x, 0)
+        self.assertEqual(s1.y, 0)
+        self.assertEqual(s1.id, 17)
+
+        r1 = Rectangle.create(**({'height': 3, 'hi': 5}))
+        self.assertEqual(r1.width, 1)
+        self.assertEqual(r1.height, 3)
+        self.assertEqual(r1.x, 0)
+        self.assertEqual(r1.y, 0)
+        self.assertEqual(r1.id, 18)
