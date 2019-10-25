@@ -161,6 +161,16 @@ class TestBase(unittest.TestCase):
         Square.save_to_file([s1])
         self.assertTrue(os.path.isfile('Square.json'))
 
+        Square.save_to_file(None)
+        self.assertTrue(os.path.isfile('Square.json'))
+        with open("Square.json", encoding="UTF-8") as f:
+            self.assertEqual(f.read(), "[]")
+
+        Square.save_to_file([])
+        self.assertTrue(os.path.isfile('Square.json'))
+        with open("Square.json", encoding="UTF-8") as f:
+            self.assertEqual(f.read(), "[]")
+
     def test_08_from_json_str(self):
         """Checks the JSON string representation in a file
         """
