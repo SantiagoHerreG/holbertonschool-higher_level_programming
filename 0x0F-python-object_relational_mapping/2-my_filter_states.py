@@ -9,9 +9,11 @@ if __name__ == "__main__":
     """The code is not executed when imported
     """
     try:
-        db_conn = MySQLdb.connect(host="localhost", port=3306, user=sys.argv[1],
-                              passwd=sys.argv[2], db=sys.argv[3],
-                              charset="utf8")
+        db_conn = MySQLdb.connect(host="localhost", port=3306,
+                                  user=sys.argv[1],
+                                  passwd=sys.argv[2],
+                                  db=sys.argv[3],
+                                  charset="utf8")
     except:
         exit(1)
 
