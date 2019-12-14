@@ -16,7 +16,8 @@ if __name__ == "__main__":
  ORDER BY states.id ASC".format(sys.argv[4]))
 
     query_res = curs.fetchall()
-    for row in query_res:
-        print(row)
+    if query_res:
+        for row in query_res:
+            print(row)
     curs.close()
     db_conn.close()
