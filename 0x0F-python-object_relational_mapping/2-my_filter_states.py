@@ -18,8 +18,12 @@ if __name__ == "__main__":
         exit(1)
 
     curs = db_conn.cursor()
-    curs.execute("SELECT * FROM states WHERE states.name = '{}'\
+    try:
+        curs.execute("SELECT * FROM states WHERE states.name = '{}'\
  ORDER BY states.id ASC".format(sys.argv[4]))
+    except:
+        print("Missing state name")
+        exit(1)
 
     query_res = curs.fetchall()
     if query_res:
