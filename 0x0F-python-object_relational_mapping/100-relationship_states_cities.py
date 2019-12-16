@@ -23,5 +23,6 @@ if __name__ == "__main__":
 
     session.add(cal)
     session.add(San_f)
+
     session.commit()
     session.close()
