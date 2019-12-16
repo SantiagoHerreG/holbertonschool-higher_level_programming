@@ -11,12 +11,12 @@ if __name__ == "__main__":
                               passwd=sys.argv[2], db=sys.argv[3],
                               charset="utf8")
     curs = db_conn.cursor()
-    curs.execute("SELECT * FROM states WHERE name LIKE 'N%'\
- ORDER BY states.id ASC")
+    curs.execute("SELECT * FROM states ORDER BY states.id ASC")
 
     query_res = curs.fetchall()
     if query_res:
         for row in query_res:
-            print(row)
+            if row[1][0] == 'N':
+                print(row)
     curs.close()
     db_conn.close()
