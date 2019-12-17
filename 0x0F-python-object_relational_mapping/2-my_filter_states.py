@@ -20,6 +20,7 @@ if __name__ == "__main__":
     curs = db_conn.cursor()
     try:
         curs.execute("SELECT * FROM states WHERE states.name = '{}'\
+ COLLATE utf8_bin\
  ORDER BY states.id ASC".format(sys.argv[4]))
     except:
         print("Missing state name")
