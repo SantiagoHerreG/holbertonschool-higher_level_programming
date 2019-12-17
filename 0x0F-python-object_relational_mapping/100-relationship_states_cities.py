@@ -18,18 +18,10 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    id_obj = session.query(State).filter(State.id == '1')\
-        .order_by(State.id.desc()).first()
-
-    if id_obj.id is None:
-        cal = State(name="California", id='1')
-    else:
-        new_id = id_obj.id + 1
-        new_id = str(new_id)
-        cal = State(name="California", id=new_id)
+    cal = State(name="California")
     session.add(cal)
+    session.commit()
     San_f = City(name="San Francisco", state_id=cal.id)
     session.add(San_f)
-
     session.commit()
     session.close()
