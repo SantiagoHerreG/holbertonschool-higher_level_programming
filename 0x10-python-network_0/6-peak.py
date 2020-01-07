@@ -8,11 +8,18 @@ def recursion_peak(int_list, idx1, idx2):
     """
     idx = int((idx2 - idx1)/2) + idx1
     current = int_list[idx]
-    if idx == idx1 or idx == idx2:
+    if idx == idx2:
         return current
+    elif idx == idx1:
+        return max(int_list[idx], int_list[idx + 1])
 
     if (current > int_list[idx + 1] and current > int_list[idx - 1]):
         return current
+    elif (current < int_list[idx + 1] and current < int_list[idx - 1]):
+        if idx > (len(int_list) - idx):
+            return recursion_peak(int_list, idx + 1, idx2)
+        else:
+            return recursion_peak(int_list, idx1, idx - 1)
     elif current < int_list[idx - 1]:
         return recursion_peak(int_list, idx1, idx - 1)
     else:
