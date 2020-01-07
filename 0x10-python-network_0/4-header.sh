@@ -1,3 +1,3 @@
 #!/bin/bash
-# Curl a host with DELETE request
-curl -s -X GET -H "X-HolbertonSchool-User-Id: 98" "$1"
+# Curl a host with GET request, and header setting
+curl -sL "$1" -X GET -H "X-HolbertonSchool-User-Id: 98"
