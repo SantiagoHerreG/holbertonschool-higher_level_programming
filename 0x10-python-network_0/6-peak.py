@@ -15,11 +15,8 @@ def recursion_peak(int_list, idx):
             return current
         elif current < int_list[idx - 1]:
             return recursion_peak(int_list, idx - 1)
-        elif current < int_list[idx + 1]:
-            return recursion_peak(int_list, idx + 1)
         else:
-            return max(recursion_peak(int_list, idx + 1),
-                       recursion_peak(int_list, idx - 1))
+            return recursion_peak(int_list, idx + 1)
     else:
         return current
 
