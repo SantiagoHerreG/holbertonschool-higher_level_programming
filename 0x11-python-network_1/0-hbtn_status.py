@@ -12,4 +12,4 @@ if __name__ == "__main__":
         print("    - type: " + str(type(body)))
         print("    - content: ", end="")
         print(body)
-        print("    - utf8 content: " + res.msg)
+        print("    - utf8 content: " + body.decode())
