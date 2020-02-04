@@ -1,14 +1,13 @@
 #!/usr/bin/node
 const list = process.argv;
-let max, i;
+let i, num;
 if (!list[2] || !list[3]) {
   console.log('0');
 } else {
-  max = list[2];
-  for (i = 3; i < list.length; i++) {
-    if (list[i] > max) {
-      max = list[i];
-    }
+  for (i = 2; i < list.length; i++) {
+    num = Number(list[i]);
+    list[i] = num;
   }
-  console.log(max);
+  list.sort(function (a, b) { return (b - a); });
+  console.log(list[3]);
 }
