@@ -11,7 +11,7 @@ $(document).ready(function () {
   });
   $('INPUT#language_code').on('keypress', function (e) {
     if (e.which === 13) {
-      $(this).attr("disabled", "disabled");
+      $(this).attr('disabled', 'disabled');
       const language = $(this).val();
       $.ajax({
         url: 'https://fourtonfish.com/hellosalut/?lang=' + language,
@@ -20,7 +20,7 @@ $(document).ready(function () {
       }).done(function (json) {
         $('DIV#hello').text(json.hello);
       });
-      $(this).removeAttr("disabled");
+      $(this).removeAttr('disabled');
     }
-   });
+  });
 });
